@@ -15,3 +15,10 @@ TEST(HelloTest2, BasicAssertions) {
   // Expect equality.
   EXPECT_EQ(7 * 6, 42);
 }
+
+TEST(HelloTest3, BasicAssertions) {
+  // Expect two strings to be equal.
+  EXPECT_STREQ("hello", "world");
+  // Expect equality.
+  EXPECT_EQ(7 * 6, 47);
+}
