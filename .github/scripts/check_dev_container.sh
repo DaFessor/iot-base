@@ -10,6 +10,9 @@ REPO_NAME=$1
 IMAGE_PATH=$2
 GITHUB_TOKEN=$3
 
+echo "REPO_NAME=${REPO_NAME}"
+echo "IMAGE_PATH=${IMAGE_PATH}"
+
 # Constants
 REPO_NAME_URL_ENC=$(echo "${REPO_NAME}" | cut -f2 -d/)
 IMAGE_NAME=$(echo "${IMAGE_PATH}" | cut -f4 -d/ | cut -f1 -d:)
@@ -35,10 +38,10 @@ if [ "${IMG_UP2DATE}" -lt  1 ]; then
     docker image rm "${IMAGE_PATH_NO_TAG}" || true
     echo "Doing the actual build ...."
     docker build -t "${IMAGE_PATH}" --label org.opencontainers.image.description="${DOCKER_HASH}" .
-    echo "Pushing new image ...."
+    echo "Pushing new image to ${IMAGE_PATH} ...."
     docker push "${IMAGE_PATH}"
 else
-    echo "Image up to date, nothing to do ...."
+    echo "Image ${IMAGE_PATH} up to date, nothing to do ...."
 fi
 
 exit 0
